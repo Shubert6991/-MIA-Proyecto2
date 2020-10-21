@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ConectionService } from '../../../services/conection.service';
 import { Router } from '@angular/router';
 
@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit {
 
   pass: string;
   email: string;
+  @Input() nombre: string;
+  @Output() changeNombre = new EventEmitter();
 
   ingresar(){
     let alertEmail = document.getElementById('invalidEmail');
@@ -53,6 +55,7 @@ export class LoginComponent implements OnInit {
         if(usr.pass == passEncrypted){
           console.log("contra tambien esta bien")
           //redireccionar a home
+          this.changeNombre.emit("test");
           this.router.navigate(['/']);
         }
         return;

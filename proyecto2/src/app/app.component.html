@@ -1,3 +1,5 @@
 <!-- home -->
-<h1>Esta es la home</h1>
+<h1>Este es el Componente Padre</h1>
+<app-login [nombre] ="nombreUsr" (changeNombre)="updateNombre($event)"></app-login>
+<app-home [nombre] ="nombreUsr" (changeNombre)="updateNombre($event)"></app-home>
 <router-outlet></router-outlet>

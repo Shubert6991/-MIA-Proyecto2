@@ -8,12 +8,16 @@ import { NavbarComponent } from './components/login/components/navbar/navbar.com
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './components/home/home.component';
+import { RegistroComponent } from './components/registro/registro.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomeComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
