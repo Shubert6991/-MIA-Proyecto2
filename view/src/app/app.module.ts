@@ -8,6 +8,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { MaterialModule } from '@app/material.module';
 import { SidebarModule } from './shared/components/sidebar/sidebar.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SidebarModule } from './shared/components/sidebar/sidebar.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    SidebarModule
+    SidebarModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

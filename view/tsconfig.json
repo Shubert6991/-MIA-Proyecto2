@@ -9,7 +9,7 @@
       "@admin/*":["src/app/pages/admin/*"],
       "@pages/*":["src/app/pages/*"],
       "@auth/*":["src/app/pages/auth/*"],
-      "@env/*":["src/enviroments/*"]
+      "@env/*":["src/environments/*"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,

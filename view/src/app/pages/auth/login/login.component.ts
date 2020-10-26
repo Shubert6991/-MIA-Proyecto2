@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authSvc: AuthService) { }
 
   ngOnInit(): void {
+    const userData = {
+      username: "test@test.com",
+      password: "123456",
+    };
+    this.authSvc.login(userData).subscribe((rest) => console.log("login"));
   }
 
 }
