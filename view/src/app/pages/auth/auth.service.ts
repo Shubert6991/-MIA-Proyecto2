@@ -28,11 +28,14 @@ export class AuthService {
     .post<UserResponse>(`${environment.API_URL}/login`, authData)
     .pipe(
       map((res:UserResponse) => {
-        console.log(res);
-        this.saveToken(res.token);
-        this.logged.next(true);
+        if(res.mensaje  === "Exito"){
+          this.saveToken(res.token);
+          this.logged.next(true);
+        } else {
+          //usuario o contraseña erroneos
+        }
       }),
-      catchError( (err) => this.handleError(err))
+      catchError((err) => this.handleError(err))
     );
   }
 

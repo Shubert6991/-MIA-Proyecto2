@@ -1,4 +1,4 @@
-export type Rol = 'USER'|'ADMIN';
+export type Rol = 0|1;
 
 export interface User {
   username: string;
@@ -6,8 +6,15 @@ export interface User {
 }
 
 export interface UserResponse {
-  message: string;
+  mensaje: string;
   token: string;
   userId: number;
-  role: Rol;
+  correo: string;
+  nombre: string;
+  apellido: string;
+  nacimiento: string;
+  pathProfilePic: string;
+  credits: number;
+  tipo: Rol;
+  idPais: number; 
 }
