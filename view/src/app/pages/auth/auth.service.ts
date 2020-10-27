@@ -2,14 +2,26 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User, UserResponse } from '@app/shared/models/user.interface';
 import { environment } from '@env/environment';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError,map } from 'rxjs/operators';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
+const helper = new JwtHelperService();
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  private logged = new BehaviorSubject<boolean>(false);
+
+  constructor(private http: HttpClient) { 
+    this.checkToken();
+  }
+
+  get isLogged():Observable<boolean>{
+    return this.logged.asObservable();
+  }
 
   login(authData: User):Observable<UserResponse|void>{
     return this.http
@@ -17,16 +29,28 @@ export class AuthService {
     .pipe(
       map((res:UserResponse) => {
         console.log(res);
-        //save User Token
         this.saveToken(res.token);
+        this.logged.next(true);
       }),
       catchError( (err) => this.handleError(err))
     );
   }
 
-  logout():void{}
-  private readToken():void{}
-  private saveToken(token:string):void{}
+  logout():void{
+    localStorage.removeItem('token');
+    this.logged.next(false);
+  }
+
+  private checkToken():void{
+    const userToken = localStorage.getItem('token');
+    const isExpired = helper.isTokenExpired(userToken);
+    console.log("Token expirado?: "+isExpired);
+    isExpired ? this.logout() : this.logged.next(true);
+  }
+
+  private saveToken(token:string):void{
+    localStorage.setItem('token',token);
+  }
 
   private handleError(err:any):Observable<never>{
     let errorMessage = "Ocurrio un error al tratar de obtener datos";
