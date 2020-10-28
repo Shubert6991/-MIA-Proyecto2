@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CheckLoginGuard } from './shared/guards/check-login.guard';
 
 const routes: Routes = [
   { 
@@ -16,7 +17,8 @@ const routes: Routes = [
   }, 
   { 
     path: 'login', 
-    loadChildren: () => import('./pages/auth/login/login.module').then(m => m.LoginModule) 
+    loadChildren: () => import('./pages/auth/login/login.module').then(m => m.LoginModule),
+    canActivate:[CheckLoginGuard] 
   }];
 
 @NgModule({
