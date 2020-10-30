@@ -106,7 +106,7 @@ router.post('/login', async(req,res) => {
     } else {
       console.log("no se puede loguear");
       usuario = {
-        "mensaje": "Usuario o contraseña erroneos",
+        "mensaje": "Error",
         "token": "",
         "userId": 0,
         "correo": "",

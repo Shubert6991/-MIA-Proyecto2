@@ -1,10 +1,11 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User, UserResponse } from '@app/shared/models/user.interface';
+import { User, UserResponse,Rol } from '@app/shared/models/user.interface';
 import { environment } from '@env/environment';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError,map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 const helper = new JwtHelperService();
 
@@ -14,8 +15,9 @@ const helper = new JwtHelperService();
 export class AuthService {
 
   private logged = new BehaviorSubject<boolean>(false);
+  private role = new BehaviorSubject<Rol>(null);
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient,private router: Router) { 
     this.checkToken();
   }
 
@@ -23,16 +25,22 @@ export class AuthService {
     return this.logged.asObservable();
   }
 
+  get isAdmin():Observable<number>{
+    return this.role.asObservable();
+  }
+
   login(authData: User):Observable<UserResponse|void>{
     return this.http
     .post<UserResponse>(`${environment.API_URL}/login`, authData)
     .pipe(
       map((res:UserResponse) => {
-        if(res.mensaje  === "Exito"){
-          this.saveToken(res.token);
+        if(res.mensaje === "Exito"){
+          this.saveLocal(res);
           this.logged.next(true);
-        } else {
-          //usuario o contraseña erroneos
+          this.role.next(res.tipo);
+          return res;
+        }else{
+          window.alert("Usuario o contraseña incorrectos");
         }
       }),
       catchError((err) => this.handleError(err))
@@ -40,25 +48,34 @@ export class AuthService {
   }
 
   logout():void{
-    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.logged.next(false);
+    this.role.next(null);
+    this.router.navigate(['login']);
   }
 
   private checkToken():void{
-    const userToken = localStorage.getItem('token');
-    const isExpired = helper.isTokenExpired(userToken);
-    console.log("Token expirado?: "+isExpired);
-    isExpired ? this.logout() : this.logged.next(true);
+    const user = JSON.parse(localStorage.getItem('user')) || null;
+    if(user){
+      const isExpired = helper.isTokenExpired(user.token);
+      if(isExpired){
+        this.logout()
+      } else{
+        this.logged.next(true);
+        this.role.next(user.tipo);
+      }
+    }
   }
 
-  private saveToken(token:string):void{
-    localStorage.setItem('token',token);
+  private saveLocal(user:UserResponse):void{
+    const {userId, mensaje,...rest} = user;
+    localStorage.setItem('user',JSON.stringify(rest));
   }
 
   private handleError(err:any):Observable<never>{
     let errorMessage = "Ocurrio un error al tratar de obtener datos";
     if(err){
-      errorMessage = `Error: ${err.message}`;
+      errorMessage = `Error: code ${err.message}`;
     }
     window.alert(errorMessage);
     return throwError(errorMessage);
