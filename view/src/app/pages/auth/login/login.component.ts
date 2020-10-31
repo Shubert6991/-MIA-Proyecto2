@@ -59,4 +59,8 @@ export class LoginComponent implements OnInit,OnDestroy {
       (this.loginForm.get(field).valid)
     )
   }
+  
+  registro():void{
+    this.router.navigate(['registro']);
+  }
 }

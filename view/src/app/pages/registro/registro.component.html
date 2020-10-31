@@ -1,0 +1,18 @@
+<div class="register-form">
+  <mat-card class="card-register">
+    <mat-card-content>
+      <h1>Registro</h1>
+      <form [formGroup]="registerForm">
+        <mat-form-field class="full-width-input">
+          <input 
+            matInput 
+            placeholder="Email" 
+            type="text" 
+            formControlName="username" 
+            required
+          />
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

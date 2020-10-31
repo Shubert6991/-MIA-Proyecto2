@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CheckLoginGuard } from './shared/guards/check-login.guard';
+import { HomeGuardGuard } from './shared/guards/home-guard.guard';
 
 const routes: Routes = [
   { 
     path: '', 
-    loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule) 
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
+    canActivate:[HomeGuardGuard]
   }, 
   { 
     path: 'notFound', 
@@ -19,6 +21,10 @@ const routes: Routes = [
     path: 'login', 
     loadChildren: () => import('./pages/auth/login/login.module').then(m => m.LoginModule),
     canActivate:[CheckLoginGuard] 
+  },
+  { 
+    path: 'registro', 
+    loadChildren: () => import('./pages/registro/registro.module').then(m => m.RegistroModule) 
   }];
 
 @NgModule({
