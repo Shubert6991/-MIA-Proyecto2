@@ -10,8 +10,7 @@ import { Router } from '@angular/router';
 })
 export class RegistroComponent implements OnInit {
   registerForm = this.fb.group({
-    username:[''],
-    password:[''], 
+    nombre:[''],
   });
   constructor(private authSvc: AuthService, private fb: FormBuilder, private router:Router) { }
 

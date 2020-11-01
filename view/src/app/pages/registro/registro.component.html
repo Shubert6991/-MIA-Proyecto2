@@ -1,18 +1,64 @@
-<div class="register-form">
-  <mat-card class="card-register">
-    <mat-card-content>
-      <h1>Registro</h1>
+<div>
+  <mat-card class="card" style="margin: 2rem auto; width: 75%;">
+    <mat-card-title class="card-header">
+      Registro
+    </mat-card-title> 
+    <mat-card-content class="card-body text-center">
       <form [formGroup]="registerForm">
-        <mat-form-field class="full-width-input">
-          <input 
-            matInput 
-            placeholder="Email" 
-            type="text" 
-            formControlName="username" 
-            required
-          />
-        </mat-form-field>
+        <div>
+          <mat-form-field appearance="outline" style="width: 75%;">
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="Ingresa tu nombre">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline" style="width: 75%;">
+            <mat-label>Apellido</mat-label>
+            <input matInput placeholder="Ingresa tu apellido">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline" style="width: 75%;">
+            <mat-label>Correo</mat-label>
+            <input matInput placeholder="correo@dominio.com">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline" style="width: 75%;">
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="password" placeholder="Ingresa tu contraseña">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline" style="width: 75%;">
+            <mat-label>Validacion de contraseña</mat-label>
+            <input matInput type="password" placeholder="Ingresa tu contraseña nuevamente">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline" style="width: 75%;">
+            <mat-label>Fecha de nacimiento</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>          
+        </div>
+        <div>
+          <mat-form-field appearance="outline" style="width: 75%;">
+            <mat-label>Selecciona tu pais</mat-label>
+            <mat-select>
+              <mat-option value="option">Option</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="custom-file" style="width: 75%;">
+          <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+          <label class="custom-file-label" for="validatedCustomFile">Sube tu foto de perfil...</label>
+          <div class="invalid-feedback">Example invalid custom file feedback</div>
+        </div>
       </form>
+      <br/>
+      <button type="submit" mat-raised-button color="primary" style="width: 75%;">Registrarse</button>
     </mat-card-content>
   </mat-card>
 </div>
