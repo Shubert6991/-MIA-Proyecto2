@@ -18,3 +18,8 @@ export interface UserResponse {
   tipo: Rol;
   idPais: number; 
 }
+
+export interface Pais{
+  id: number;
+  nombre:string;
+}

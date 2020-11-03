@@ -1,64 +1,137 @@
-<div>
-  <mat-card class="card" style="margin: 2rem auto; width: 75%;">
-    <mat-card-title class="card-header">
-      Registro
-    </mat-card-title> 
-    <mat-card-content class="card-body text-center">
-      <form [formGroup]="registerForm">
-        <div>
-          <mat-form-field appearance="outline" style="width: 75%;">
-            <mat-label>Nombre</mat-label>
-            <input matInput placeholder="Ingresa tu nombre">
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field appearance="outline" style="width: 75%;">
-            <mat-label>Apellido</mat-label>
-            <input matInput placeholder="Ingresa tu apellido">
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field appearance="outline" style="width: 75%;">
-            <mat-label>Correo</mat-label>
-            <input matInput placeholder="correo@dominio.com">
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field appearance="outline" style="width: 75%;">
-            <mat-label>Contraseña</mat-label>
-            <input matInput type="password" placeholder="Ingresa tu contraseña">
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field appearance="outline" style="width: 75%;">
-            <mat-label>Validacion de contraseña</mat-label>
-            <input matInput type="password" placeholder="Ingresa tu contraseña nuevamente">
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field appearance="outline" style="width: 75%;">
-            <mat-label>Fecha de nacimiento</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>          
-        </div>
-        <div>
-          <mat-form-field appearance="outline" style="width: 75%;">
-            <mat-label>Selecciona tu pais</mat-label>
-            <mat-select>
-              <mat-option value="option">Option</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="custom-file" style="width: 75%;">
-          <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-          <label class="custom-file-label" for="validatedCustomFile">Sube tu foto de perfil...</label>
-          <div class="invalid-feedback">Example invalid custom file feedback</div>
-        </div>
-      </form>
-      <br/>
-      <button type="submit" mat-raised-button color="primary" style="width: 75%;">Registrarse</button>
-    </mat-card-content>
-  </mat-card>
+<div class="bg">
+  <div class="contenedor-registro">
+    <mat-card class="card" class="carta-registro">
+      <mat-card-title class="card-header text-center">
+        Registro
+      </mat-card-title> 
+      <mat-card-content class="card-body text-center">
+        <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+          <div>
+            <mat-form-field appearance="outline" class="campo-registro">
+              <mat-label>Nombre</mat-label>
+              <input 
+                matInput 
+                placeholder="Ingresa tu nombre"
+                type="text"
+                formControlName="name"
+                required
+              />
+              <mat-error *ngIf="isValidField('name')">
+                <p>Ingrese un nombre valido...</p>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="campo-registro">
+              <mat-label>Apellido</mat-label>
+              <input 
+                matInput 
+                placeholder="Ingresa tu apellido"
+                type="text"
+                formControlName="lastname"
+                required
+              />
+              <mat-error *ngIf="isValidField('lastname')">
+                <p>Ingrese un apellido valido...</p>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="campo-registro">
+              <mat-label>Correo</mat-label>
+              <input 
+                matInput 
+                placeholder="correo@dominio.com"
+                type="text"
+                formControlName="email"
+                required
+              />
+              <mat-error *ngIf="isValidField('email')">
+                <p>Ingrese un correo valido...</p>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="campo-registro">
+              <mat-label>Contraseña</mat-label>
+              <input 
+                matInput 
+                type="password" 
+                placeholder="Ingresa tu contraseña"
+                formControlName="password"
+                required
+              />
+              <mat-error *ngIf="isValidField('password')">
+                <p>Ingrese una contraseña que contenga mas de 5 caracteres...</p>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="campo-registro">
+              <mat-label>Validacion de contraseña</mat-label>
+              <input 
+                matInput
+                type="password" 
+                placeholder="Ingresa tu contraseña nuevamente"
+                formControlName="password2"
+                required
+              />
+              <mat-error *ngIf="isValidField('password2')">
+                <p>Las contraseñas no son iguales</p>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="campo-registro">
+              <mat-label>Fecha de nacimiento</mat-label>
+              <input 
+                matInput 
+                [matDatepicker]="picker"
+                formControlName="date"
+                required
+              />
+              <mat-error *ngIf="isValidField('date')">
+                <p>Ingresa una fecha valida</p>
+              </mat-error>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>          
+          </div>
+          <div>
+            <mat-form-field appearance="outline" class="campo-registro">
+              <mat-label>Selecciona tu pais</mat-label>
+              <mat-select formControlName="country">
+                <mat-option *ngFor="let country of countries" [value]="country.id">
+                  {{country.nombre}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="isValidField('country')">
+                <p>Selecciona un pais</p>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="custom-file campo-registro spacer">
+            <input 
+              type="file" 
+              class="custom-file-input" 
+              id="validatedCustomFile" 
+              formControlName="picture"
+              required
+            />
+            <label class="custom-file-label" for="validatedCustomFile">Sube tu foto de perfil...</label>
+            <div class="invalid-feedback">Archivo no valido</div>
+            <mat-error *ngIf="isValidField('picture')">
+              <p>Selecciona una imagen de perfil valida</p>
+            </mat-error>
+          </div>
+          <button
+          [disabled]="registerForm.invalid" 
+          type="submit" 
+          mat-raised-button 
+          color="primary" 
+          class="btn">Registrarse</button>
+        </form>        
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

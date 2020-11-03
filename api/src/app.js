@@ -15,6 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 
 //routes
 app.use(require('./routes/login.js'));
+app.use(require('./routes/register.js'));
 //public
 
 //server start

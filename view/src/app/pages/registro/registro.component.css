@@ -1,0 +1,29 @@
+.contenedor-registro {
+  padding: 1.5rem 1rem;
+}
+
+.carta-registro{
+  margin: 2rem 1rem;
+}
+
+.campo-registro{
+  width: 75%;
+}
+
+.bg{
+  background-image: url("../../../assets/backgrounds/register.jpg");
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.spacer{
+  margin-bottom: 2rem;
+}
+
+.btn{
+  width: 50%;
+}
