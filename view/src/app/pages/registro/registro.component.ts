@@ -56,6 +56,7 @@ export class RegistroComponent implements OnInit,OnDestroy {
       this.registerService.registro(rest).subscribe(res =>{
         switch(res){
           case "OK":
+            window.alert("Usuario creado exitosamente");
             this.router.navigate(['login']);
             break;
           case "ERROR, AL SUBIR FOTO":

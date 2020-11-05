@@ -7,10 +7,12 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  User = null;
   constructor(public authSvc:AuthService) { }
 
   ngOnInit(): void {
+    this.User = JSON.parse(localStorage.getItem('user')) || null;
+    console.log(this.User);
   }
 
 }
