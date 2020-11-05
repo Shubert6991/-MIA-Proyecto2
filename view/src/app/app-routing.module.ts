@@ -25,7 +25,15 @@ const routes: Routes = [
   { 
     path: 'registro', 
     loadChildren: () => import('./pages/registro/registro.module').then(m => m.RegistroModule) 
-  }];
+  },
+  { path: 'profile', 
+    loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule) 
+  },
+  { 
+    path: 'recoverpass', 
+    loadChildren: () => import('./pages/recoverpass/recoverpass.module').then(m => m.RecoverpassModule) 
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

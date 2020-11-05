@@ -2,7 +2,7 @@
   <mat-card class="card-login">
     <mat-card-content>
       <h1>Login</h1>
-      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="separator">
         <mat-form-field class="full-width-input">
           <input 
             matInput 
@@ -35,6 +35,7 @@
         <button [disabled]="loginForm.invalid" type="submit" mat-raised-button color="primary">Login</button>
         <button mat-raised-button color="accent" (click)="registro()">Registrarse</button>
       </form>
+      <a [routerLink]="['recover']">Olvido su contraseña?</a>
     </mat-card-content>
   </mat-card>
 </div>

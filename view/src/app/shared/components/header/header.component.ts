@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '@app/pages/auth/auth.service';
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -15,7 +16,7 @@ export class HeaderComponent implements OnInit,OnDestroy {
 
   @Output() toggleSidenav = new EventEmitter<void>();
 
-  constructor(private authSvc:AuthService) { }
+  constructor(private authSvc:AuthService, private router:Router) { }
 
   ngOnInit(): void {
     this.subscription.add(
@@ -38,5 +39,9 @@ export class HeaderComponent implements OnInit,OnDestroy {
 
   onLogout():void{
     this.authSvc.logout();
+  }
+
+  goToProfile():void {
+    this.router.navigate(['profile']);
   }
 }

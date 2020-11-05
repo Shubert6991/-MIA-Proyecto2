@@ -1,15 +1,15 @@
-.login-form{
+.recover-form{
   padding: 4rem 1rem;
 }
 
-.card-login{
+.card-recover{
   max-width: 300px;
   margin: 5rem auto;
   text-align: center;
-  height: 350px;
+  height: 220px;
 }
 
-.full-width-input{
+.full-width{
   width: 100%;
 }
 
@@ -22,7 +22,7 @@ button {
 }
 
 .bg{
-  background-image: url("../../../../assets/backgrounds/index-bg.jpg");
+  background-image: url("../../../assets/backgrounds/index-bg.jpg");
   
   /* Full height */
   height: 100%;
