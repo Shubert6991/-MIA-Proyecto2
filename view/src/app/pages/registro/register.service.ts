@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Pais } from '@app/shared/models/user.interface';
+import { Pais, RegistroResponse, RegistroUsuario } from '@app/shared/models/user.interface';
 import { environment } from '@env/environment';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,16 @@ export class RegisterService {
     .pipe(
       map((res:Pais) => {
         return res;
+      })
+    );
+  }
+
+  registro(data:RegistroUsuario):Observable<string>{
+    return this.http
+    .post(`${environment.API_URL}/registro`,data)
+    .pipe(
+      map((res:RegistroResponse) => {
+        return res.mensaje;
       })
     );
   }

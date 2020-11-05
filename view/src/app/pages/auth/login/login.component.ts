@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit,OnDestroy {
       return;
     }
     const formValue = this.loginForm.value;
+    formValue.username = formValue.username.trim();
     this.subscription.add(
       this.authSvc.login(formValue).subscribe((res) =>{
         if(res){

@@ -5,7 +5,7 @@
         Registro
       </mat-card-title> 
       <mat-card-content class="card-body text-center">
-        <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        <form [formGroup]="registerForm" (ngSubmit)="onRegister()" enctype="multipart/form-data">
           <div>
             <mat-form-field appearance="outline" class="campo-registro">
               <mat-label>Nombre</mat-label>
@@ -114,9 +114,11 @@
             <input 
               type="file" 
               class="custom-file-input" 
+              name="image"
               id="validatedCustomFile" 
               formControlName="picture"
-              required
+              accept="image/*"
+              (change) = "handleUpload($event)"
             />
             <label class="custom-file-label" for="validatedCustomFile">Sube tu foto de perfil...</label>
             <div class="invalid-feedback">Archivo no valido</div>

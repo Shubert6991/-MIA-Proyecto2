@@ -23,3 +23,17 @@ export interface Pais{
   id: number;
   nombre:string;
 }
+
+export interface RegistroUsuario {
+  name: string;
+  lastname: string;
+  email: string;
+  password: string;
+  date: string;
+  country: string;
+  picture: string;
+}
+
+export interface RegistroResponse{
+  mensaje: string;
+}
