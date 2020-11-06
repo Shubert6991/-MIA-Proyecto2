@@ -1,1 +1,57 @@
-<p>recoverpass works!</p>
+<div class="recover-form bg">
+  <mat-card class="card-recover">
+    <mat-card-content>
+      <h1>Recuperacion de contraseña</h1>
+      <form [formGroup]="recoverForm" (ngSubmit)="recover()">
+        <mat-form-field class="full-width">
+          <input 
+            matInput 
+            placeholder="Correo" 
+            type="text" 
+            formControlName="email" 
+            required
+            readonly
+          />
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input 
+            matInput 
+            placeholder="Nueva contraseña" 
+            [type] = "hide1 ? 'password':'text'"
+            formControlName="pass1" 
+            required
+          />
+          <button type="button" mat-icon-button matSuffix (click)="hide1 = !hide1">
+            <mat-icon>{{ hide1 ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+          <mat-error *ngIf="isValidField('pass1')">
+            La contraseña debe ser de al menos 5 caracteres de longitud
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width separator">
+          <input 
+            matInput 
+            placeholder="Verificacion de contraseña" 
+            [type] = "hide2 ? 'password':'text'"
+            formControlName="pass2" 
+            required
+          />
+          <button type="button" mat-icon-button matSuffix (click)="hide2 = !hide2">
+            <mat-icon>{{ hide2 ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+          <mat-error *ngIf="isValidField('pass2')">
+            Las contraseñas deben coincidir
+          </mat-error>
+        </mat-form-field>
+    
+        <button 
+          [disabled]="recoverForm.invalid" 
+          type="submit" 
+          mat-raised-button color="primary"
+          class="full-width">Cambiar contraseña</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

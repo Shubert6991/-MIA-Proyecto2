@@ -13,6 +13,8 @@ import { MustMatch } from './paswordmatch';
 })
 export class RegistroComponent implements OnInit,OnDestroy {
   private emailRegex = /\S+@\S+\.\S+/;
+  hide1 = true;
+  hide2 = true;
 
   registerForm = this.fb.group({
     name:['',[Validators.required, Validators.minLength(1)]],
@@ -47,6 +49,8 @@ export class RegistroComponent implements OnInit,OnDestroy {
   }
 
   onRegister():void{
+    if(this.registerForm.invalid) return;
+    
     const {password2,...rest} = this.registerForm.value;
     rest.picture = this.imageEncoded;
     var fecha = rest.date.getDate()+"/"+(+rest.date.getMonth()+1)+"/"+rest.date.getFullYear();

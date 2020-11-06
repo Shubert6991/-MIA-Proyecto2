@@ -1,0 +1,33 @@
+.recover-form{
+  padding: 4rem 1rem;
+}
+
+.card-recover{
+  max-width: 300px;
+  margin: 5rem auto;
+  text-align: center;
+  height: 350px;
+}
+
+.full-width{
+  width: 100%;
+}
+
+.separator{
+  margin-bottom: 2rem;
+}
+
+button {
+  width: 50%;
+}
+
+.bg{
+  background-image: url("../../../assets/backgrounds/index-bg.jpg");
+  
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

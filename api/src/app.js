@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: true, parameterLimit: 50000,limit: '25mb'
 //routes
 app.use(require('./routes/login.js'));
 app.use(require('./routes/register.js'));
+app.use(require('./routes/recover.js'));
 //public
 
 //server start

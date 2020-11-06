@@ -56,11 +56,14 @@
               <mat-label>Contraseña</mat-label>
               <input 
                 matInput 
-                type="password" 
+                [type] = "hide1 ? 'password':'text'"
                 placeholder="Ingresa tu contraseña"
                 formControlName="password"
                 required
               />
+              <button type="button" mat-icon-button matSuffix (click)="hide1 = !hide1">
+                <mat-icon>{{ hide1 ? "visibility_off" : "visibility" }}</mat-icon>
+              </button>
               <mat-error *ngIf="isValidField('password')">
                 <p>Ingrese una contraseña que contenga mas de 5 caracteres...</p>
               </mat-error>
@@ -71,11 +74,14 @@
               <mat-label>Validacion de contraseña</mat-label>
               <input 
                 matInput
-                type="password" 
+                [type] = "hide2 ? 'password':'text'"
                 placeholder="Ingresa tu contraseña nuevamente"
                 formControlName="password2"
                 required
               />
+              <button type="button" mat-icon-button matSuffix (click)="hide2 = !hide2">
+                <mat-icon>{{ hide2 ? "visibility_off" : "visibility" }}</mat-icon>
+              </button>
               <mat-error *ngIf="isValidField('password2')">
                 <p>Las contraseñas no son iguales</p>
               </mat-error>

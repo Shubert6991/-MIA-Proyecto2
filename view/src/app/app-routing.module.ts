@@ -30,7 +30,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule) 
   },
   { 
-    path: 'recoverpass', 
+    path: 'recoverpass/:id', 
     loadChildren: () => import('./pages/recoverpass/recoverpass.module').then(m => m.RecoverpassModule) 
   }
 ];

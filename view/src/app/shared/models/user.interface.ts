@@ -37,3 +37,7 @@ export interface RegistroUsuario {
 export interface RegistroResponse{
   mensaje: string;
 }
+
+export interface UMail{
+  email: string;
+}

@@ -1,6 +1,6 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User, UserResponse,Rol } from '@app/shared/models/user.interface';
+import { User, UserResponse,Rol, UMail } from '@app/shared/models/user.interface';
 import { environment } from '@env/environment';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError,map } from 'rxjs/operators';
@@ -79,5 +79,25 @@ export class AuthService {
     }
     window.alert(errorMessage);
     return throwError(errorMessage);
+  }
+
+  recoverPass(recoverData:UMail):Observable<boolean>{
+   return this.http
+   .post<boolean>(`${environment.API_URL}/recoverPass`, recoverData)
+   .pipe(
+     map((res:boolean) => {
+       return res;
+     })
+   );
+  }
+
+  changePass(data:User):Observable<boolean>{
+    return this.http
+    .post<boolean>(`${environment.API_URL}/changePass`,data)
+    .pipe(
+      map((res:boolean) => {
+        return res;
+      })
+    );
   }
 }
