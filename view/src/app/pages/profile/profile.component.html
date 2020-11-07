@@ -25,6 +25,9 @@
             formControlName="name"
           />
           <mat-hint>Name</mat-hint>
+          <mat-error *ngIf="isValidProfileInfo('name')">
+            <p>Ingrese un nombre valido...</p>
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">             
@@ -35,6 +38,9 @@
             formControlName="lastname"
           />
           <mat-hint>Apellido</mat-hint>
+          <mat-error *ngIf="isValidProfileInfo('lastname')">
+            <p>Ingrese un apellido valido...</p>
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">             
@@ -43,6 +49,9 @@
             <mat-option>test</mat-option>
           </mat-select>
           <mat-hint>Pais</mat-hint>
+          <mat-error *ngIf="isValidProfileInfo('country')">
+            <p>Seleccione un pais...</p>
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width separator">             
@@ -56,6 +65,9 @@
           <mat-hint>Fecha de nacimiento</mat-hint>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="isValidProfileInfo('date')">
+            <p>Seleccione una fecha...</p>
+          </mat-error>
         </mat-form-field>
 
         <button mat-raised-button type="submit" color="primary" class="full-width">Actualizar</button>
@@ -78,6 +90,9 @@
             readonly
           />
           <mat-hint>Contraseña</mat-hint>
+          <mat-error *ngIf="isValidProfilePass('pass')">
+            <p>Ingrese una contraseña valida</p>
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">             
@@ -91,6 +106,9 @@
             <mat-icon>{{ hide1 ? "visibility_off" : "visibility" }}</mat-icon>
           </button>
           <mat-hint>Nueva contraseña</mat-hint>
+          <mat-error *ngIf="isValidProfilePass('pass1')">
+            <p>Ingrese una contraseña valida</p>
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width separator">             
@@ -104,6 +122,9 @@
             <mat-icon>{{ hide2 ? "visibility_off" : "visibility" }}</mat-icon>
           </button>
           <mat-hint>Verificacion de contraseña</mat-hint>
+          <mat-error *ngIf="isValidProfilePass('pass2')">
+            <p>Las constraseñas no coinciden</p>
+          </mat-error>
         </mat-form-field>
         <button mat-raised-button type="submit" color="primary" class="full-width">Actualizar</button>
       </form>
@@ -126,6 +147,9 @@
           />
           <label class="custom-file-label" for="validatedCustomFile">Sube tu foto de perfil...</label>
           <div class="invalid-feedback">Archivo no valido</div>
+          <mat-error *ngIf="isValidProfilePic('picture')">
+            <p>Selecciona una imagen de perfil valida</p>
+          </mat-error>
         </div>
         <button mat-raised-button type="submit" color="primary" class="full-width">Actualizar</button>
       </form>
