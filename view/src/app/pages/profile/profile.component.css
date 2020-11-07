@@ -7,7 +7,7 @@
 }
 
 .separator{
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 button {
@@ -25,7 +25,7 @@ button {
   margin: 2rem auto;
   text-align: center;
   width: 550px;
-  height: 450px;
+  /* height: 450px; */
 }
 
 .card-img{

@@ -14,17 +14,15 @@
             formControlName="email"
             readonly
           />
-          <mat-hint>Correo</mat-hint>
         </mat-form-field>
 
         <mat-form-field class="full-width">             
           <input
             matInput
-            placeholder="Name"
+            placeholder="Nombre"
             type="text"
             formControlName="name"
           />
-          <mat-hint>Name</mat-hint>
           <mat-error *ngIf="isValidProfileInfo('name')">
             <p>Ingrese un nombre valido...</p>
           </mat-error>
@@ -33,28 +31,28 @@
         <mat-form-field class="full-width">             
           <input
             matInput
-            placeholder="Lastname"
+            placeholder="Apellido"
             type="text"
             formControlName="lastname"
           />
-          <mat-hint>Apellido</mat-hint>
           <mat-error *ngIf="isValidProfileInfo('lastname')">
             <p>Ingrese un apellido valido...</p>
           </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">             
-          <mat-label>Selecciona tu pais</mat-label>
+          <mat-label>Pais</mat-label>
           <mat-select formControlName="country">
-            <mat-option>test</mat-option>
+            <mat-option *ngFor="let country of Countries" [value]="country.id">
+              {{country.nombre}}
+            </mat-option>
           </mat-select>
-          <mat-hint>Pais</mat-hint>
           <mat-error *ngIf="isValidProfileInfo('country')">
             <p>Seleccione un pais...</p>
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="full-width separator">             
+        <mat-form-field class="full-width">             
           <mat-label>Fecha de nacimiento</mat-label>
           <input 
             matInput 
@@ -62,11 +60,24 @@
             formControlName="date"
             required
           />
-          <mat-hint>Fecha de nacimiento</mat-hint>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
           <mat-error *ngIf="isValidProfileInfo('date')">
             <p>Seleccione una fecha...</p>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width separator">             
+          <input
+            matInput
+            placeholder="Creditos"
+            type="text"
+            formControlName="credits"
+            readonly
+          />
+          <mat-hint>Creditos</mat-hint>
+          <mat-error *ngIf="isValidProfileInfo('credits')">
+            <p>Ingrese un numero valido...</p>
           </mat-error>
         </mat-form-field>
 
@@ -98,14 +109,13 @@
         <mat-form-field class="full-width">             
           <input
             matInput
-            placeholder="New Password"
+            placeholder="Nueva contraseña"
             [type] = "hide1 ? 'password':'text'"
             formControlName="pass1"
           />
           <button type="button" mat-icon-button matSuffix (click)="hide1 = !hide1">
             <mat-icon>{{ hide1 ? "visibility_off" : "visibility" }}</mat-icon>
           </button>
-          <mat-hint>Nueva contraseña</mat-hint>
           <mat-error *ngIf="isValidProfilePass('pass1')">
             <p>Ingrese una contraseña valida</p>
           </mat-error>
@@ -114,14 +124,13 @@
         <mat-form-field class="full-width separator">             
           <input
             matInput
-            placeholder="Password Verification"
+            placeholder="Verificacion de contraseña"
             [type] = "hide2 ? 'password':'text'"
             formControlName="pass2"
           />
           <button type="button" mat-icon-button matSuffix (click)="hide2 = !hide2">
             <mat-icon>{{ hide2 ? "visibility_off" : "visibility" }}</mat-icon>
           </button>
-          <mat-hint>Verificacion de contraseña</mat-hint>
           <mat-error *ngIf="isValidProfilePass('pass2')">
             <p>Las constraseñas no coinciden</p>
           </mat-error>
@@ -134,7 +143,7 @@
     
   <mat-card class="card-img">
     <mat-card-content>
-      <img src="" alt="profile picture" class="profile-pic"/>
+      <img [src]="Image" alt="profile picture" class="profile-pic"/>
       <form [formGroup]="profilePic"> 
         <div class="custom-file full-width separator">
           <input 

@@ -41,3 +41,11 @@ export interface RegistroResponse{
 export interface UMail{
   email: string;
 }
+
+export interface imagePath{
+  path: string;
+}
+
+export interface ProfilePic{
+  image: string;
+}
