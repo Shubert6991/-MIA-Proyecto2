@@ -1,0 +1,69 @@
+.profile-container{
+  padding: 1.5rem 1rem;
+}
+
+.full-width{
+  width:100%;
+}
+
+.separator{
+  margin-bottom: 2rem;
+}
+
+button {
+  width: 50%;
+}
+
+.card-pass{
+  margin: 2rem auto;
+  text-align: center;
+  width: 550px;
+  height: 320px;
+}
+
+.card-info{
+  margin: 2rem auto;
+  text-align: center;
+  width: 550px;
+  height: 450px;
+}
+
+.card-img{
+  margin: 2rem auto;
+  text-align: center;
+  width: 550px;
+  /* height: 375px; */
+}
+
+.profile-pic{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  width: 50%;
+}
+
+.bg{
+  background-image: url("../../../assets/backgrounds/profile-bg.jpg");
+  /* Full height */
+  /* height: 100%; */
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+}
+
+@media (max-width: 600px) {
+  /* CSS that should be displayed if width is equal to or less than 800px goes here */
+  .card-info{
+    width: 85%;
+  }
+
+  .card-pass{
+    width: 85%;
+  }
+
+  .card-img{
+    width: 85%;
+  }
+}
