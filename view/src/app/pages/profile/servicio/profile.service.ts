@@ -13,9 +13,7 @@ export class ProfileService {
 
   constructor(private http:HttpClient, private router: Router) { }
 
-  getPicture(picture: imagePath):Observable<ProfilePic>{
-    console.log(picture);
-    
+  getPicture(picture: imagePath):Observable<ProfilePic>{    
     return this.http
     .post<ProfilePic>(`${environment.API_URL}/getPicture`, picture)
     .pipe(

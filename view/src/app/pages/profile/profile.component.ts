@@ -47,7 +47,7 @@ export class ProfileComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
     //informacion de usuario
     this.User = JSON.parse(localStorage.getItem('user')) || null;
-    console.log(this.User);
+    // console.log(this.User);
     //llenar formularios
     this.subscription.add(
       this.registerService.getPaises().subscribe(res => {
@@ -72,7 +72,7 @@ export class ProfileComponent implements OnInit,OnDestroy {
     let infoPath = {"path":this.User.pathProfilePic}
     this.subscription.add(
       this.profileService.getPicture(infoPath).subscribe(res =>{
-        console.log(res)
+        // console.log(res)
         this.Image = res.image;
       })
     )
