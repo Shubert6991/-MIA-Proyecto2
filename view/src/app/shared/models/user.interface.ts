@@ -49,3 +49,11 @@ export interface imagePath{
 export interface ProfilePic{
   image: string;
 }
+
+export interface userInfo{
+  uid: number;
+  name: string;
+  lastname: string;
+  country: number;
+  date: string;
+}

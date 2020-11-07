@@ -5,7 +5,7 @@
       Informacion
     </mat-card-title>
     <mat-card-content>
-      <form [formGroup]="profileInfo">
+      <form [formGroup]="profileInfo" (ngSubmit)="updateInfo()">
         <mat-form-field appearance="fill" class="full-width">             
           <input
             matInput
@@ -60,11 +60,11 @@
             formControlName="date"
             required
           />
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
           <mat-error *ngIf="isValidProfileInfo('date')">
             <p>Seleccione una fecha...</p>
           </mat-error>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width separator">             

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { imagePath, ProfilePic } from '@app/shared/models/user.interface';
+import { imagePath, ProfilePic, userInfo } from '@app/shared/models/user.interface';
 import { environment } from '@env/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -22,4 +22,15 @@ export class ProfileService {
       })
     )
   }
+
+  updateInfo(data: userInfo):Observable<boolean>{
+    return this.http
+    .post<boolean>(`${environment.API_URL}/updateInfo`, data)
+    .pipe(
+      map((res:boolean) => {
+        return res;
+      })
+    )
+  }
+
 }

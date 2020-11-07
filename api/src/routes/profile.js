@@ -18,4 +18,12 @@ router.post('/getPicture', async(req,res) => {
   res.send(JSON.stringify(response));
 });
 
+router.post('/updateInfo', async(req,res)=>{
+  let info = req.body;
+  let sql = `UPDATE usuario SET nombre='${info.name}',apellido='${info.lastname}',pais_idPais=${info.country},nacimiento=TO_DATE('${info.date}', 'DD/MM/YYYY') WHERE idUsuario=${info.uid}`
+  let result = await db.Open(sql,[],true);
+  console.log(result);
+  res.send(true);
+})
+
 module.exports = router;

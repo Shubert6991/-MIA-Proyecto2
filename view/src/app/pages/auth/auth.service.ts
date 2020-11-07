@@ -68,7 +68,7 @@ export class AuthService {
   }
 
   private saveLocal(user:UserResponse):void{
-    const {userId, mensaje,...rest} = user;
+    const {mensaje,...rest} = user;
     localStorage.setItem('user',JSON.stringify(rest));
   }
 

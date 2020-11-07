@@ -59,7 +59,7 @@ export class ProfileComponent implements OnInit,OnDestroy {
       name: this.User.nombre,
       lastname: this.User.apellido,
       country: this.User.idPais,
-      date: this.User.nacimiento,
+      date: new Date(this.User.nacimiento),
       credits: this.User.credits
     });
     this.profilePass.setValue({
@@ -101,6 +101,30 @@ export class ProfileComponent implements OnInit,OnDestroy {
     return(
       (this.profilePic.get(field).touched || this.profilePic.get(field).dirty) && 
       !(this.profilePic.get(field).valid)
+    )
+  }
+
+  updateInfo():void{
+    var fuinf = this.profileInfo.value;
+    var fecha = fuinf.date.getDate()+"/"+(+fuinf.date.getMonth()+1)+"/"+fuinf.date.getFullYear();
+    var uinf = {
+      uid: this.User.userId,
+      name: fuinf.name,
+      lastname: fuinf.lastname,
+      country: fuinf.country,
+      date: fecha
+    }
+
+    this.User.nombre = uinf.name;
+    this.User.apellido = uinf.lastname;
+    this.User.idPais = uinf.country;
+    this.User.nacimiento = uinf.date;
+
+    this.subscription.add(
+      this.profileService.updateInfo(uinf).subscribe(res => {
+        console.log(res);
+        localStorage.setItem('user',JSON.stringify(this.User));
+      })
     )
   }
 }
