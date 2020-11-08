@@ -4,5 +4,14 @@
 
 a{
   text-decoration: none;
-  color: #ffffff;
+}
+
+.image{
+  background-image: url('https://i0.wp.com/blogs.cardiff.ac.uk/mental-health/wp-content/uploads/sites/502/2017/04/no-profile.jpg');
+  /* Full height */
+  /* height: 100%; */
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

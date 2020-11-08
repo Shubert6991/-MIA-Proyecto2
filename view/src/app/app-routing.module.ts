@@ -32,7 +32,8 @@ const routes: Routes = [
   { 
     path: 'recoverpass/:id', 
     loadChildren: () => import('./pages/recoverpass/recoverpass.module').then(m => m.RecoverpassModule) 
-  }
+  },
+  { path: 'sell', loadChildren: () => import('./pages/sell/sell.module').then(m => m.SellModule) }
 ];
 
 @NgModule({

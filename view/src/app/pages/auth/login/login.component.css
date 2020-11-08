@@ -21,9 +21,7 @@ button {
   width: 50%;
 }
 
-.bg{
-  background-image: url("../../../../assets/backgrounds/index-bg.jpg");
-  
+.bg{  
   /* Full height */
   height: 100%;
   /* Center and scale the image nicely */
