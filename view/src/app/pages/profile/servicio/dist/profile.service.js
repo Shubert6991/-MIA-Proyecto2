@@ -9,12 +9,22 @@ exports.__esModule = true;
 exports.ProfileService = void 0;
 var core_1 = require("@angular/core");
 var environment_1 = require("@env/environment");
+var BehaviorSubject_1 = require("rxjs/internal/BehaviorSubject");
 var operators_1 = require("rxjs/operators");
 var ProfileService = /** @class */ (function () {
     function ProfileService(http, router) {
         this.http = http;
         this.router = router;
+        this.user = new BehaviorSubject_1.BehaviorSubject(null);
     }
+    Object.defineProperty(ProfileService.prototype, "theUser", {
+        get: function () {
+            this.user.next(JSON.parse(localStorage.getItem('user')));
+            return this.user.asObservable();
+        },
+        enumerable: false,
+        configurable: true
+    });
     ProfileService.prototype.getPicture = function (picture) {
         return this.http
             .post(environment_1.environment.API_URL + "/getPicture", picture)

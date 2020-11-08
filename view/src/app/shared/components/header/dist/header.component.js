@@ -10,17 +10,30 @@ exports.HeaderComponent = void 0;
 var core_1 = require("@angular/core");
 var rxjs_1 = require("rxjs");
 var HeaderComponent = /** @class */ (function () {
-    function HeaderComponent(authSvc, router) {
+    function HeaderComponent(authSvc, router, profileService) {
         this.authSvc = authSvc;
         this.router = router;
+        this.profileService = profileService;
         this.subscription = new rxjs_1.Subscription();
         this.isAdmin = null;
         this.isLogged = false;
+        this.User = null;
+        this.profilePicture = "";
         this.toggleSidenav = new core_1.EventEmitter();
     }
     HeaderComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.subscription.add(this.authSvc.isLogged.subscribe(function (res) { return _this.isLogged = res; }));
+        this.subscription.add(this.authSvc.isLogged.subscribe(function (res) {
+            _this.isLogged = res;
+            if (res) {
+                _this.User = JSON.parse(localStorage.getItem('user'));
+                var path = _this.User.pathProfilePic;
+                var infoPath = { "path": path };
+                _this.subscription.add(_this.profileService.getPicture(infoPath).subscribe(function (res) {
+                    _this.profilePicture = res.image;
+                }));
+            }
+        }));
         this.subscription.add(this.authSvc.isAdmin.subscribe(function (res) { return _this.isAdmin = res; }));
     };
     HeaderComponent.prototype.ngOnDestroy = function () {
@@ -31,6 +44,7 @@ var HeaderComponent = /** @class */ (function () {
     };
     HeaderComponent.prototype.onLogout = function () {
         this.authSvc.logout();
+        // this.profilePicture = "";
     };
     __decorate([
         core_1.Output()

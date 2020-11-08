@@ -6,10 +6,17 @@ a{
   text-decoration: none;
 }
 
+.header-text{
+  color:white;
+}
+
+.header-text:hover {
+  color: #FFCC00
+}
+
 .image{
-  background-image: url('https://i0.wp.com/blogs.cardiff.ac.uk/mental-health/wp-content/uploads/sites/502/2017/04/no-profile.jpg');
+  /* background-image: url('../../../../assets/backgrounds/index-bg.jpg'); */
   /* Full height */
-  /* height: 100%; */
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;

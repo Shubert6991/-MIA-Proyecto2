@@ -162,8 +162,8 @@ export class ProfileComponent implements OnInit,OnDestroy {
         // location.reload();
         let infoPath = {"path":this.User.pathProfilePic}
         this.subscription.add(
-        this.profileService.getPicture(infoPath).subscribe(res =>{
-          this.Image = res.image;
+          this.profileService.getPicture(infoPath).subscribe(res =>{
+            this.Image = res.image;
           })
         )
       })

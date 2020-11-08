@@ -5,7 +5,7 @@
     </button>
   </ng-container>
 
-    <a [routerLink]="''" >GTSales Marketplace</a>
+    <a [routerLink]="''" class="header-text">GTSales Marketplace</a>
     <span class="spacer"></span>
     <a *ngIf="isAdmin === '1'" mat-button [routerLink]="'/admin'">Admin</a>
     <a *ngIf="!isLogged; else viewLogout" mat-button [routerLink]="'/login'">Login</a>
@@ -17,32 +17,26 @@
   </button>
 
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <a [routerLink]="'/sell'">
-        <mat-icon>dialpad</mat-icon>
-        Vender
-      </a>
+    <button mat-menu-item [routerLink]="'/sell'">
+      <mat-icon>add_box</mat-icon>
+      Vender
     </button>
 
-    <button mat-menu-item>
-      <a [routerLink]="'/profile'">
-        <mat-icon>dialpad</mat-icon>
-        Perfil
-      </a>
+    <button mat-menu-item [routerLink]="'/profile'">
+      <mat-icon>account_box</mat-icon>
+      Perfil
     </button>
 
-    <button mat-menu-item>
-      <a (click)="onLogout()">
-        <mat-icon>dialpad</mat-icon>
-        Logout
-      </a>
+    <button mat-menu-item (click)="onLogout()">
+      <mat-icon>cancel</mat-icon>
+      Logout
     </button>
   </mat-menu>
   <button 
     mat-icon-button 
     color="accent" 
     class="image" 
-    style="background-image: url('https://pecb.com/conferences/wp-content/uploads/2017/10/no-profile-picture-300x216.jpg')"
+    [style.backgroundImage]="'url(' + profilePicture + ')'"
     [routerLink]="'/profile'"
   ></button>
 </ng-template>

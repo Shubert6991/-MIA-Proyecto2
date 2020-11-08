@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { imagePath, ProfilePic, RegistroResponse, User, userInfo, UserResponse } from '@app/shared/models/user.interface';
 import { environment } from '@env/environment';
 import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -12,6 +13,13 @@ import { map } from 'rxjs/operators';
 export class ProfileService {
 
   constructor(private http:HttpClient, private router: Router) { }
+
+  private user = new BehaviorSubject<User>(null);
+
+  get theUser():Observable<User>{
+    this.user.next(JSON.parse(localStorage.getItem('user')));
+    return this.user.asObservable();
+  }
 
   getPicture(picture: imagePath):Observable<ProfilePic>{    
     return this.http
