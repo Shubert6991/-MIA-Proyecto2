@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, NumberValueAccessor, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MustMatch } from '../registro/paswordmatch';
@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit,OnDestroy {
   hide1 = true;
   hide2 = true;
   Image = "";
+  imageEncoded;
   private emailRegex = /\S+@\S+\.\S+/;
   private subscription: Subscription = new Subscription();
 
@@ -48,6 +49,7 @@ export class ProfileComponent implements OnInit,OnDestroy {
     //informacion de usuario
     this.User = JSON.parse(localStorage.getItem('user')) || null;
     // console.log(this.User);
+
     //llenar formularios
     this.subscription.add(
       this.registerService.getPaises().subscribe(res => {
@@ -104,6 +106,7 @@ export class ProfileComponent implements OnInit,OnDestroy {
     )
   }
 
+  //actuarlizar informacion del usuario
   updateInfo():void{
     var fuinf = this.profileInfo.value;
     var fecha = fuinf.date.getDate()+"/"+(+fuinf.date.getMonth()+1)+"/"+fuinf.date.getFullYear();
@@ -126,5 +129,53 @@ export class ProfileComponent implements OnInit,OnDestroy {
         localStorage.setItem('user',JSON.stringify(this.User));
       })
     )
+  }
+
+  //cambiar contraseña
+  changePass():void{
+    var fupass = this.profilePass.value;
+    var email = this.User.correo;
+    var objUsr = {
+      username: email,
+      password: fupass.pass1
+    }
+    this.subscription.add(
+      this.profileService.updatePass(objUsr).subscribe(res => {
+        window.alert("Contraseña actualizada exitosamente")
+      })
+    );
+  }
+
+  //cambiar foto de perfil
+  changeImage():void{
+    //create object
+    var objPP = {
+      uid: this.User.userId,
+      email: this.User.correo,
+      image: this.imageEncoded
+    }
+    //update database
+    this.subscription.add(
+      this.profileService.updateProfilePicture(objPP).subscribe(res => {
+        this.User.pathProfilePic = res.mensaje;
+        localStorage.setItem('user',JSON.stringify(this.User));
+        // location.reload();
+        let infoPath = {"path":this.User.pathProfilePic}
+        this.subscription.add(
+        this.profileService.getPicture(infoPath).subscribe(res =>{
+          this.Image = res.image;
+          })
+        )
+      })
+    )
+  }
+
+  handleUpload(event){
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+        this.imageEncoded = reader.result;
+    };
   }
 }

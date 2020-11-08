@@ -57,3 +57,9 @@ export interface userInfo{
   country: number;
   date: string;
 }
+
+export interface ProfilePic{
+  uid: number;
+  email: string;
+  image: string;
+}

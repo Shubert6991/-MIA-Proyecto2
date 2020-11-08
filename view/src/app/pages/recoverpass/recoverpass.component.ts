@@ -64,6 +64,5 @@ export class RecoverpassComponent implements OnInit,OnDestroy {
         this.router.navigate(['login'])
       })
     );
-    
   }
 }

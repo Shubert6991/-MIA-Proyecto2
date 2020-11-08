@@ -81,7 +81,7 @@
           </mat-error>
         </mat-form-field>
 
-        <button mat-raised-button type="submit" color="primary" class="full-width">Actualizar</button>
+        <button [disabled]="profileInfo.invalid" mat-raised-button type="submit" color="primary" class="full-width">Actualizar</button>
       </form>
     </mat-card-content>
   </mat-card>
@@ -91,7 +91,7 @@
       Contraseña
     </mat-card-title>
     <mat-card-content>
-      <form [formGroup]="profilePass">
+      <form [formGroup]="profilePass" (ngSubmit)="changePass()">
         <mat-form-field appearance="fill" class="full-width">             
           <input
             matInput
@@ -135,7 +135,7 @@
             <p>Las constraseñas no coinciden</p>
           </mat-error>
         </mat-form-field>
-        <button mat-raised-button type="submit" color="primary" class="full-width">Actualizar</button>
+        <button [disabled]="profilePass.invalid" mat-raised-button type="submit" color="primary" class="full-width">Actualizar</button>
       </form>
     </mat-card-content>
   </mat-card>
@@ -144,15 +144,16 @@
   <mat-card class="card-img">
     <mat-card-content>
       <img [src]="Image" alt="profile picture" class="profile-pic"/>
-      <form [formGroup]="profilePic"> 
+      <form [formGroup]="profilePic" (ngSubmit)="changeImage()" enctype="multipart/form-data"> 
         <div class="custom-file full-width separator">
           <input 
             type="file" 
             class="custom-file-input" 
-            name="picture"
+            name="image"
             id="validatedCustomFile" 
             formControlName="picture"
             accept="image/*"
+            (change) = "handleUpload($event)"
           />
           <label class="custom-file-label" for="validatedCustomFile">Sube tu foto de perfil...</label>
           <div class="invalid-feedback">Archivo no valido</div>
@@ -160,7 +161,12 @@
             <p>Selecciona una imagen de perfil valida</p>
           </mat-error>
         </div>
-        <button mat-raised-button type="submit" color="primary" class="full-width">Actualizar</button>
+        <button 
+          [disabled]="profilePic.invalid" 
+          mat-raised-button 
+          type="submit" 
+          color="primary" 
+          class="full-width">Actualizar</button>
       </form>
       
     </mat-card-content>
