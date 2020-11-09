@@ -7,11 +7,27 @@
 
     <a [routerLink]="''" class="header-text">GTSales Marketplace</a>
     <span class="spacer"></span>
+    <button mat-icon-button *ngIf="isAdmin === '1'">
+      <mat-icon matBadge="2" matBadgeColor="warn">comment_bank</mat-icon>
+    </button>
+    
     <a *ngIf="isAdmin === '1'" mat-button [routerLink]="'/admin'">Admin</a>
     <a *ngIf="!isLogged; else viewLogout" mat-button [routerLink]="'/login'">Login</a>
 </mat-toolbar>
 
 <ng-template #viewLogout>
+  <button mat-icon-button>
+    <mat-icon matBadge="15" matBadgeColor="warn">chat_bubble_outline</mat-icon>
+  </button>
+  
+  <button 
+    mat-icon-button 
+    color="accent" 
+    class="image" 
+    [style.backgroundImage]="'url(' + profilePicture + ')'"
+    [routerLink]="'/profile'"
+  ></button>
+
   <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu">
     <mat-icon>more_vert</mat-icon>
   </button>
@@ -32,11 +48,4 @@
       Logout
     </button>
   </mat-menu>
-  <button 
-    mat-icon-button 
-    color="accent" 
-    class="image" 
-    [style.backgroundImage]="'url(' + profilePicture + ')'"
-    [routerLink]="'/profile'"
-  ></button>
 </ng-template>

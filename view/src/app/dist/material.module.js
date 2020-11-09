@@ -27,6 +27,9 @@ var datepicker_1 = require("@angular/material/datepicker");
 var core_2 = require("@angular/material/core");
 var select_1 = require("@angular/material/select");
 var grid_list_1 = require("@angular/material/grid-list");
+var badge_1 = require("@angular/material/badge");
+var tabs_1 = require("@angular/material/tabs");
+var table_1 = require("@angular/material/table");
 var myModules = [
     toolbar_1.MatToolbarModule,
     sidenav_1.MatSidenavModule,
@@ -40,6 +43,9 @@ var myModules = [
     core_2.MatNativeDateModule,
     select_1.MatSelectModule,
     grid_list_1.MatGridListModule,
+    badge_1.MatBadgeModule,
+    tabs_1.MatTabsModule,
+    table_1.MatTableModule
 ];
 var MaterialModule = /** @class */ (function () {
     function MaterialModule() {

@@ -22,3 +22,10 @@ a{
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+@media (max-width: 600px) {
+  .header-text{
+    visibility: hidden;
+    width: 2px;
+  }  
+}
