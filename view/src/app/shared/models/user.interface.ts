@@ -58,8 +58,17 @@ export interface userInfo{
   date: string;
 }
 
-export interface ProfilePic{
+export interface ProfilePic {
   uid: number;
   email: string;
   image: string;
+}
+
+export interface Categoria {
+  id: number;
+  name: string;
+}
+
+export interface SendCategoria {
+  nombre: string;
 }

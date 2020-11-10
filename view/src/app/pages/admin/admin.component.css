@@ -1,0 +1,15 @@
+.full-width{
+  width: 100%;
+}
+
+th.mat-header-cell {
+  text-align: center;
+}
+
+.campo-form{
+  width: 80%;
+}
+
+.btn{
+  width: 50%;
+}

@@ -12,6 +12,7 @@ var common_1 = require("@angular/common");
 var admin_routing_module_1 = require("./admin-routing.module");
 var admin_component_1 = require("./admin.component");
 var material_module_1 = require("@app/material.module");
+var forms_1 = require("@angular/forms");
 var AdminModule = /** @class */ (function () {
     function AdminModule() {
     }
@@ -21,7 +22,8 @@ var AdminModule = /** @class */ (function () {
             imports: [
                 common_1.CommonModule,
                 admin_routing_module_1.AdminRoutingModule,
-                material_module_1.MaterialModule
+                material_module_1.MaterialModule,
+                forms_1.ReactiveFormsModule
             ]
         })
     ], AdminModule);
