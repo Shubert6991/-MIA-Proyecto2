@@ -14,6 +14,10 @@
   width: 50%;
 }
 
+.spacer{
+  margin-bottom: 2rem;
+}
+
 .bg{
   background-image: url("../../../assets/backgrounds/profile-bg.jpg");
   /* Full height */

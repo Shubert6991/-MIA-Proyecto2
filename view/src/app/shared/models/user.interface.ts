@@ -72,3 +72,16 @@ export interface Categoria {
 export interface SendCategoria {
   nombre: string;
 }
+
+export interface Product{
+  nombre: string;
+  description: string;
+  claves: string;
+  precio: number;
+  cantidad: number;
+  categoria: number;
+  picture: string;
+  idUsuario: number;
+  correo: string;
+  pais: number;
+}

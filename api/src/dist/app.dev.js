@@ -27,7 +27,8 @@ app.use(require('./routes/login.js'));
 app.use(require('./routes/register.js'));
 app.use(require('./routes/recover.js'));
 app.use(require('./routes/profile.js'));
-app.use(require('./routes/admin.js')); //public
+app.use(require('./routes/admin.js'));
+app.use(require('./routes/product.js')); //public
 //server start
 
 app.listen(app.get('port'), function () {

@@ -6,7 +6,7 @@
       </mat-card-title>
       <mat-card-content class="card-body text-center">
         <!-- nombre -->
-        <form [formGroup]="productForm">
+        <form [formGroup]="productForm" (ngSubmit)="venderProducto()">
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Nombre</mat-label>
             <input 
@@ -45,14 +45,31 @@
             <mat-label>Precio</mat-label>
             <input 
               matInput 
-              placeholder="Nombre del producto"
+              placeholder="Precio del producto"
               type="number"
               formControlName="precio"
               required
             />
             <mat-icon matPrefix>attach_money</mat-icon>
             <mat-error *ngIf="isValidField('precio')">
-              <p>Ingrese un nombre valido...</p>
+              <p>Ingrese un precio valido...</p>
+            </mat-error>
+          </mat-form-field>
+
+          <!-- cantidad -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Cantidad</mat-label>
+            <input 
+              matInput 
+              placeholder="Cantidad de productos"
+              type="number"
+              formControlName="cantidad"
+              required
+              min="1"
+            />
+            <mat-icon matPrefix>attach_money</mat-icon>
+            <mat-error *ngIf="isValidField('cantidad')">
+              <p>Ingrese una cantidad mayor a 0</p>
             </mat-error>
           </mat-form-field>
 
@@ -60,15 +77,32 @@
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Selecciona la categoria del producto</mat-label>
             <mat-select formControlName="categoria">
-              <!-- <mat-option *ngFor="let cat of countries" [value]="country.id">
-                {{country.nombre}}
-              </mat-option> -->
+              <mat-option *ngFor="let cat of Cats" [value]="cat.id">
+                {{cat.nombre}}
+              </mat-option>
             </mat-select>
             <mat-error *ngIf="isValidField('categoria')">
-              <p>Selecciona un pais</p>
+              <p>Selecciona una categoria</p>
             </mat-error>
           </mat-form-field>
 
+          <!-- imagen -->
+          <div class="custom-file campo-registro spacer">
+            <input 
+              type="file" 
+              class="custom-file-input" 
+              name="image"
+              id="validatedCustomFile" 
+              formControlName="picture"
+              accept="image/*"
+              (change) = "handleUpload($event)"
+            />
+            <label class="custom-file-label" for="validatedCustomFile">Sube la foto de tu producto...</label>
+            <div class="invalid-feedback">Archivo no valido</div>
+            <mat-error *ngIf="isValidField('picture')">
+              <p>Selecciona una imagen valida</p>
+            </mat-error>
+          </div>
           <button
           [disabled]="productForm.invalid" 
           type="submit" 
