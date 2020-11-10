@@ -56,6 +56,7 @@ var SellComponent = /** @class */ (function () {
         };
     };
     SellComponent.prototype.venderProducto = function () {
+        var _this = this;
         var form = this.productForm.value;
         var producto = {
             nombre: form.nombre,
@@ -71,6 +72,13 @@ var SellComponent = /** @class */ (function () {
         };
         this.subscription.add(this.produtosSvc.addProducto(producto).subscribe(function (res) {
             console.log(res);
+            if (res) {
+                window.alert("Producto Publicado correctamente");
+                _this.router.navigate(['']);
+            }
+            else {
+                window.alert("Hubo un error al tratar de comunicarse con el servidor, intente nuevamente");
+            }
         }));
     };
     SellComponent = __decorate([

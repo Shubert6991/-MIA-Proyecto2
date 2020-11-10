@@ -1,0 +1,46 @@
+.contenido{
+  display: grid;
+  grid-template-areas: "a a a a";
+  grid-gap: 10px;
+  grid-auto-rows: auto;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.search-field{
+  width: 12em;
+  font-size: 14px;
+  padding: 10px;
+}
+
+.bnt_search{
+  width: 10em;
+}
+
+@media (max-width: 600px){
+  .contenido{
+    display: grid;
+    grid-template-areas: "a";
+    grid-gap: 10px;
+    grid-auto-rows: auto;
+  }
+
+  .spacer {
+    display: none;
+  }
+
+  .search-field{
+    display: block;
+    width: 100%;
+  }
+  .bnt_search{
+    width: 100%;
+  }
+
+  .search-toolbar{
+    display: block;
+    height: 360px;
+  }
+}

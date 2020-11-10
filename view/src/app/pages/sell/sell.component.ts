@@ -80,6 +80,12 @@ export class SellComponent implements OnInit,OnDestroy {
     this.subscription.add(
       this.produtosSvc.addProducto(producto).subscribe(res => {
         console.log(res);
+        if(res){
+          window.alert("Producto Publicado correctamente");
+          this.router.navigate(['']);
+        } else {
+          window.alert("Hubo un error al tratar de comunicarse con el servidor, intente nuevamente");
+        }
       })
     )
   }

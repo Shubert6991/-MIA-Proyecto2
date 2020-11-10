@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
@@ -8,7 +9,14 @@ import { AuthService } from '../auth/auth.service';
 })
 export class HomeComponent implements OnInit {
   User = null;
-  constructor(public authSvc:AuthService) { }
+
+  searchForm = this.fb.group({
+    categoria:[''],
+    precio:[''],
+    palabraClave:['']
+  })
+
+  constructor(private authSvc:AuthService,private fb:FormBuilder) { }
 
   ngOnInit(): void {
     this.User = JSON.parse(localStorage.getItem('user')) || null;

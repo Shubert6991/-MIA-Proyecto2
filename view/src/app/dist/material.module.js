@@ -30,6 +30,7 @@ var grid_list_1 = require("@angular/material/grid-list");
 var badge_1 = require("@angular/material/badge");
 var tabs_1 = require("@angular/material/tabs");
 var table_1 = require("@angular/material/table");
+var autocomplete_1 = require("@angular/material/autocomplete");
 var myModules = [
     toolbar_1.MatToolbarModule,
     sidenav_1.MatSidenavModule,
@@ -45,7 +46,8 @@ var myModules = [
     grid_list_1.MatGridListModule,
     badge_1.MatBadgeModule,
     tabs_1.MatTabsModule,
-    table_1.MatTableModule
+    table_1.MatTableModule,
+    autocomplete_1.MatAutocompleteModule
 ];
 var MaterialModule = /** @class */ (function () {
     function MaterialModule() {

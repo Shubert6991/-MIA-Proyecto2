@@ -1,2 +1,51 @@
-<h1 *ngIf="authSvc.isLogged | async">Welcome,{{User.nombre}}</h1>
-<p>home works!</p>
+<div>
+  <mat-card>
+    <mat-card-title>
+      <mat-toolbar color="secondary" class="search-toolbar">
+        <div class="spacer"></div>
+        <form [formGroup]="searchForm" class="search-form">
+          <mat-form-field class="search-field">
+            <mat-label>Categoria</mat-label>
+            <mat-select formControlName="categoria">
+              <!-- <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+              </mat-option> -->
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="search-field">
+            <mat-label>Precio</mat-label>
+            <mat-select formControlName="precio">
+              <mat-option value="1">Ascendente</mat-option>
+              <mat-option value="1">Descendente</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="search-field"> 
+            <input 
+              type="text"
+              placeholder="Buscar..."
+              matInput
+              formControlName="palabraClave"
+              [matAutocomplete]="auto"
+            />
+            <mat-icon matSuffix>search</mat-icon>
+            <mat-autocomplete #auto="matAutocomplete">
+              <!-- <mat-option *ngFor="let option of options" [value]="option">
+                {{option}}
+              </mat-option> -->
+            </mat-autocomplete>
+          </mat-form-field>
+
+          <button mat-raised-button color="accent" class="bnt_search">Buscar</button>
+        </form>
+    
+        
+      </mat-toolbar>
+    </mat-card-title>
+    <mat-card-content class="contenido">
+      <mat-card>
+        <mat-card-title></mat-card-title>
+        <mat-card-content></mat-card-content>
+      </mat-card>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -14,6 +14,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
+import { MatAutocompleteModule } from '@angular/material/autocomplete'
 
 const myModules = [
   MatToolbarModule,
@@ -30,7 +31,8 @@ const myModules = [
   MatGridListModule,
   MatBadgeModule,
   MatTabsModule,
-  MatTableModule
+  MatTableModule,
+  MatAutocompleteModule
 ];
 
 @NgModule({
