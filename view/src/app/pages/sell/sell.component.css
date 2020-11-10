@@ -1,0 +1,25 @@
+.contenedor{
+  padding: 1.5rem 1rem;
+}
+
+.carta-formulario{
+  margin: 2rem 1rem;
+}
+
+.full-width{
+  width: 100%;
+}
+
+.btn{
+  width: 50%;
+}
+
+.bg{
+  background-image: url("../../../assets/backgrounds/profile-bg.jpg");
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
