@@ -85,3 +85,16 @@ export interface Product{
   correo: string;
   pais: number;
 }
+
+export interface ResponseProducts{
+
+}
+
+export interface DetalleProducto{
+
+}
+
+export interface ResponsePclave{
+  id:number;
+  palabra: string;
+}

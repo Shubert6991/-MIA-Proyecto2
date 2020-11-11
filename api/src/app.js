@@ -21,6 +21,8 @@ app.use(require('./routes/recover.js'));
 app.use(require('./routes/profile.js'));
 app.use(require('./routes/admin.js'));
 app.use(require('./routes/product.js'));
+app.use(require('./routes/home.js'));
+app.use(require('./routes/reportes.js'));
 //public
 
 //server start

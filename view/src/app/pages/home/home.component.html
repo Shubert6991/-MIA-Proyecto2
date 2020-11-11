@@ -3,19 +3,20 @@
     <mat-card-title>
       <mat-toolbar color="secondary" class="search-toolbar">
         <div class="spacer"></div>
-        <form [formGroup]="searchForm" class="search-form">
+        <form [formGroup]="searchForm" class="search-form" (ngSubmit)="buscarProductos()">
           <mat-form-field class="search-field">
             <mat-label>Categoria</mat-label>
             <mat-select formControlName="categoria">
-              <!-- <mat-option *ngFor="let food of foods" [value]="food.value">
-                {{food.viewValue}}
-              </mat-option> -->
+              <mat-option value="0">todas</mat-option>
+              <mat-option *ngFor="let cat of categories" [value]="cat.id">
+                {{cat.nombre}}
+              </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field class="search-field">
             <mat-label>Precio</mat-label>
             <mat-select formControlName="precio">
-              <mat-option value="1">Ascendente</mat-option>
+              <mat-option value="0">Ascendente</mat-option>
               <mat-option value="1">Descendente</mat-option>
             </mat-select>
           </mat-form-field>
@@ -24,28 +25,40 @@
               type="text"
               placeholder="Buscar..."
               matInput
-              formControlName="palabraClave"
+              formControlName="clave"
               [matAutocomplete]="auto"
             />
             <mat-icon matSuffix>search</mat-icon>
             <mat-autocomplete #auto="matAutocomplete">
-              <!-- <mat-option *ngFor="let option of options" [value]="option">
-                {{option}}
-              </mat-option> -->
+              <mat-option *ngFor="let palabra of pClaves" [value]="palabra.palabra">
+                {{palabra.palabra}}
+              </mat-option>
             </mat-autocomplete>
           </mat-form-field>
 
           <button mat-raised-button color="accent" class="bnt_search">Buscar</button>
         </form>
-    
-        
       </mat-toolbar>
     </mat-card-title>
     <mat-card-content class="contenido">
-      <mat-card>
-        <mat-card-title></mat-card-title>
-        <mat-card-content></mat-card-content>
-      </mat-card>
+      <div *ngFor="let product of allProductos">
+        <mat-card class="card_producto">
+          <mat-card-title>
+            <a href="#">{{product.nombre}}</a>
+            <div class="text-right">
+              <mat-icon>attach_money</mat-icon>
+              {{product.precio}}
+            </div>
+          </mat-card-title>
+          <mat-card-content>
+            <img src="{{product.foto}}" alt="Product picture" class="product-pic"/>
+            <div class="text-center">
+              <h3>{{product.descripcion}}</h3>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      
     </mat-card-content>
   </mat-card>
 </div>
